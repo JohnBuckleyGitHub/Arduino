@@ -7,7 +7,7 @@
 */
 
 #include <Wire.h>
-#include <MS5611.h>
+#include <MS5611_kj.h>
 
 MS5611 ms5611;
 
@@ -47,11 +47,11 @@ void loop()
 
   // Read true temperature & Pressure
   double realTemperature = ms5611.readTemperature();
-  long realPressure = ms5611.readPressure();
+  double realPressure = ms5611.readPressure();
 
   // Calculate altitude
-  float absoluteAltitude = ms5611.getAltitude(realPressure);
-  float relativeAltitude = ms5611.getAltitude(realPressure, referencePressure);
+  double absoluteAltitude = ms5611.getAltitude(realPressure);
+  double relativeAltitude = ms5611.getAltitude(realPressure, referencePressure);
 
   Serial.println("--");
 
