@@ -1,9 +1,9 @@
 #include "Wire.h"
 #include "stdlib.h"
-#define SDP_ADD_1 0x40  //Old address
+#define SDP_ADD_1 0x25  //0x40 is mfg default address for SDP-6x
 
 //Tested 20/9/15 and this works well.
-//Below the address is changed to 0x21.
+//Below the address is changed to 0x60.
 //Excel "Viewer.xlsm" has sheet explaining how to get MSB and LDB from desired address.
 
 void setup() {
@@ -18,8 +18,8 @@ void setup() {
   bMessage1[0]=0xFA;
   bMessage1[1]=0x2C;
   bMessage1[2]=0x20;
-  bMessage1[3]=0x01;  // First byte of new address
-  bMessage1[4]=0x37;  // Second byte of new address
+  bMessage1[3]=0x03;  // First byte of new address
+  bMessage1[4]=0x07;  // Second byte of new address
   //Send it all:
   Wire.write(bMessage1,5);
   iRes=Wire.endTransmission(true);
