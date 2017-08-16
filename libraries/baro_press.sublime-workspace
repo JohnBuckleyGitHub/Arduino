@@ -1,0 +1,1284 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"rq",
+				"requestRawTemperature"
+			],
+			[
+				"is",
+				"isPressure"
+			],
+			[
+				"req",
+				"requestPress"
+			],
+			[
+				"MS",
+				"MS5611"
+			],
+			[
+				"my",
+				"myData"
+			],
+			[
+				"Ge",
+				"GetData"
+			],
+			[
+				"A",
+				"Address"
+			],
+			[
+				"co",
+				"convertTemperature"
+			],
+			[
+				"pre",
+				"prev_D2"
+			],
+			[
+				"rec",
+				"recycleTemp"
+			],
+			[
+				"readRa",
+				"readRawPressure"
+			],
+			[
+				"D",
+				"D1"
+			],
+			[
+				"ui",
+				"uint32_t"
+			],
+			[
+				"R",
+				"REQUEST_PRESSURE"
+			],
+			[
+				"reques",
+				"requestState"
+			],
+			[
+				"uin",
+				"uint8_t"
+			],
+			[
+				"request",
+				"requestTempTime"
+			],
+			[
+				"u",
+				"uint32_t"
+			],
+			[
+				"Re",
+				"RequestTempTime"
+			],
+			[
+				"ma",
+				"marker_type"
+			],
+			[
+				"x",
+				"x_chans"
+			],
+			[
+				"ini",
+				"init_plot_marker_count"
+			],
+			[
+				"to",
+				"total_plot_count"
+			],
+			[
+				"plot",
+				"plot_list"
+			],
+			[
+				"MS5611",
+				"MS5611_ADDRESS"
+			],
+			[
+				"un",
+				"uint8_t"
+			],
+			[
+				"sel",
+				"select_channels"
+			],
+			[
+				"fi",
+				"filename"
+			],
+			[
+				"sh",
+				"sheet_name"
+			],
+			[
+				"shee",
+				"sheet_name"
+			],
+			[
+				"log",
+				"log_dict"
+			],
+			[
+				"op",
+				"open_log_by_tag"
+			],
+			[
+				"wt",
+				"wt_plots"
+			],
+			[
+				"in",
+				"initialdir"
+			],
+			[
+				"sp",
+				"split_loc"
+			],
+			[
+				"ar",
+				"arduino_clock"
+			],
+			[
+				"lo",
+				"log_dict"
+			],
+			[
+				"mar",
+				"marker_colors"
+			],
+			[
+				"x_",
+				"x_axis"
+			],
+			[
+				"pack",
+				"packet"
+			],
+			[
+				"packet",
+				"packet_length"
+			],
+			[
+				"com",
+				"combine_temp_packets"
+			],
+			[
+				"y_",
+				"y_labels"
+			],
+			[
+				"add",
+				"add_to_plots"
+			],
+			[
+				"cr",
+				"create_temp_packet"
+			],
+			[
+				"pl",
+				"plot_packets"
+			],
+			[
+				"dp",
+				"dp_avg"
+			],
+			[
+				"fil",
+				"filter_chans"
+			],
+			[
+				"spl",
+				"split_val"
+			],
+			[
+				"re",
+				"remove_list"
+			],
+			[
+				"so",
+				"sorted"
+			],
+			[
+				"val",
+				"values2"
+			],
+			[
+				"see",
+				"seed_data"
+			],
+			[
+				"m",
+				"m_val"
+			],
+			[
+				"cha",
+				"channel_data"
+			],
+			[
+				"i",
+				"i_val"
+			],
+			[
+				"ch",
+				"channel_data"
+			],
+			[
+				"ge",
+				"get_next_available_sheet"
+			],
+			[
+				"she",
+				"sheet_name"
+			],
+			[
+				"ne",
+				"new_name"
+			],
+			[
+				"tab",
+				"tabs_or_spaces"
+			],
+			[
+				"ro",
+				"row"
+			],
+			[
+				"ra",
+				"raw_data"
+			],
+			[
+				"rem",
+				"remove_multiple_headers"
+			],
+			[
+				"len",
+				"length"
+			],
+			[
+				"lin",
+				"lines"
+			],
+			[
+				"plo",
+				"plot_list"
+			],
+			[
+				"name",
+				"name_list"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"row",
+				"row_data"
+			],
+			[
+				"da",
+				"data_rows"
+			],
+			[
+				"nu",
+				"num_list"
+			],
+			[
+				"liv",
+				"live_ws"
+			],
+			[
+				"li",
+				"live_wb"
+			],
+			[
+				"o",
+				"o_dict_data"
+			],
+			[
+				"ba",
+				"base_name"
+			],
+			[
+				"ex",
+				"ex_cls"
+			],
+			[
+				"pa",
+				"paste_header_data"
+			],
+			[
+				"cla",
+				"classmethod"
+			],
+			[
+				"dat",
+				"data_dict"
+			],
+			[
+				"get",
+				"getattr"
+			],
+			[
+				"lis",
+				"list_of_lists"
+			],
+			[
+				"channel",
+				"channel_dict"
+			],
+			[
+				"wt_da",
+				"wt_data_obj"
+			],
+			[
+				"kw",
+				"kwarg_handler"
+			],
+			[
+				"set",
+				"set_reserved"
+			],
+			[
+				"res",
+				"reserved_channels"
+			],
+			[
+				"yaw",
+				"yaw_lhs"
+			],
+			[
+				"stat",
+				"static_p_values"
+			],
+			[
+				"attr",
+				"attr_name"
+			],
+			[
+				"con",
+				"conv_factor"
+			],
+			[
+				"n",
+				"new_name"
+			],
+			[
+				"se",
+				"setpoint_index"
+			],
+			[
+				"end",
+				"end_index"
+			],
+			[
+				"sta",
+				"start_time"
+			],
+			[
+				"fie",
+				"file_name"
+			],
+			[
+				"get_",
+				"get_tags"
+			],
+			[
+				"va",
+				"values"
+			],
+			[
+				"en",
+				"end_index"
+			],
+			[
+				"st",
+				"start_index"
+			],
+			[
+				"clo",
+				"clock_pt"
+			],
+			[
+				"setpoint_",
+				"setpoint_cn"
+			],
+			[
+				"tim",
+				"time_channel_name"
+			],
+			[
+				"he",
+				"header_list"
+			],
+			[
+				"wr",
+				"write_csv_from_data"
+			],
+			[
+				"del",
+				"delimiter"
+			],
+			[
+				"data",
+				"data_rows"
+			],
+			[
+				"time",
+				"time_offset"
+			],
+			[
+				"keep",
+				"keeper_dict"
+			],
+			[
+				"k",
+				"keeper_dict"
+			],
+			[
+				"ta",
+				"tag_dict"
+			],
+			[
+				"file_",
+				"file_list"
+			],
+			[
+				"file",
+				"file_list"
+			],
+			[
+				"zip",
+				"zip_file"
+			],
+			[
+				"su",
+				"surrey_csv_view"
+			],
+			[
+				"data_from",
+				"data_from_row_index"
+			],
+			[
+				"zi",
+				"zip_filename"
+			],
+			[
+				"th",
+				"thinned_data"
+			],
+			[
+				"ov",
+				"overwrite_zip_file"
+			],
+			[
+				"data_r",
+				"data_review"
+			],
+			[
+				"app",
+				"append"
+			],
+			[
+				"json",
+				"json_file"
+			],
+			[
+				"jso",
+				"json_file"
+			],
+			[
+				"d",
+				"data_dict"
+			],
+			[
+				"obj",
+				"object_index_dict"
+			],
+			[
+				"js",
+				"json_dict"
+			],
+			[
+				"npy",
+				"npy_filename"
+			],
+			[
+				"root",
+				"root_name"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "MS5611_kj/MS5611_kj.h",
+			"settings":
+			{
+				"buffer_size": 2923,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/John Buckley/Documents/Arduino/baro_Multi/bmp280.h",
+			"settings":
+			{
+				"buffer_size": 1327,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/John Buckley/Documents/Arduino/baro_Multi/BMP280.cpp",
+			"settings":
+			{
+				"buffer_size": 5263,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "MS5611_kj/MS5611_kj.cpp",
+			"settings":
+			{
+				"buffer_size": 7619,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Disable Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"mater",
+				"Material Theme: Configuration"
+			],
+			[
+				"ma",
+				"Material Theme: Activate theme"
+			],
+			[
+				"Package Control:",
+				"Package Control: Add Channel"
+			],
+			[
+				"gitg",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"color",
+				"Colorsublime: Install Theme"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"view.run_command('multi_indent')",
+			"view.run_command('indent_to_parenthesis_command_2')",
+			"view.run_command('example')",
+			"view.run_command('indent_to_parenthesis_command_2')",
+			"view.run_command('example')",
+			"view.run_command('indent_to_parenthesis_command_2')",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/John Buckley/Dropbox/BikeSensor/JB - Arduino Code/MS5611_kj/MS5611_kj.cpp",
+		"/C/Users/John Buckley/Documents/Arduino/libraries/MS5611_kj/Alternator 140a.csv",
+		"/C/GitHub/bikeano/NumpyReview/gen_plot.py",
+		"/C/GitHub/bikeano/NumpyReview/read_cfd.py",
+		"/C/GitHub/bikeano/NumpyReview/active_excel.py",
+		"/C/GitHub/bikeano/NumpyReview/data_review.py",
+		"/C/GitHub/bikeano/NumpyReview/surrey_csv_view.py",
+		"/C/GitHub/bikeano/NumpyReview/wt_review.py",
+		"/C/GitHub/bikeano/NumpyReview/kustom_widgets.py",
+		"/C/GitHub/bikeano/data_manager.py",
+		"/C/GitHub/bikeano/screen_module_bt_channels.py",
+		"/C/GitHub/bikeano/log.py",
+		"/C/GitHub/PhotoDrop2/PhotoDropFunctions.py",
+		"/C/GitHub/bikeano/NumpyReview/feature_table.py",
+		"/C/GitHub/bikeano/equations.py",
+		"/C/GitHub/bikeano/screen_base_module.py",
+		"/C/Users/John Buckley/Documents/Arduino/baro_Multi/BMP280.cpp",
+		"/C/Users/John Buckley/Documents/Arduino/baro_Multi/bmp280.h",
+		"/C/Users/John Buckley/Documents/Arduino/libraries/MS5611_kj/MS5611_kj.cpp",
+		"/C/Users/John Buckley/Documents/Arduino/libraries/MS5611_kj/MS5611_kj.h",
+		"/C/Users/John Buckley/Documents/Arduino/baro_Multi/baro_Multi.ino",
+		"/C/Users/John Buckley/Documents/Arduino/libraries/MS5611_pg/MS5611_pg.cpp",
+		"/C/Users/John Buckley/Documents/Arduino/libraries/MS5611_pg/MS5611_pg.h",
+		"/C/Users/John Buckley/Documents/Arduino/libraries/MS5611-pg/MS5611_pg.cpp",
+		"/C/Users/John Buckley/Documents/Arduino/libraries/Arduino-MS5611-master/MS5611.h",
+		"/C/Users/John Buckley/Documents/Arduino/libraries/Arduino-MS5611-master/MS5611.cpp",
+		"/C/Users/John Buckley/Documents/Arduino/Simple_ms5611/Simple_ms5611.ino",
+		"/C/Users/John Buckley/Dropbox/BikeSensor/Surrey Test - 2017_07_07/Tunnel Data/Results/Res_07-2017/T01.xls",
+		"/C/Users/John Buckley/Dropbox/BikeSensor/CAD_CFD/BA-048, 5MM ISLAND, 10MM CHANNEL, STRAIGHT SIDES/BA-048_report.txt",
+		"/C/GitHub/bikeano/NumpyReview/numpy_review_functions.py",
+		"/C/GitHub/bikeano/NumpyReview/tk_open_file.py",
+		"/C/GitHub/bikeano/tk_open_file.py",
+		"/C/Users/John Buckley/Documents/Bike Ano/Data/files/T04_5.xls",
+		"/C/Users/John Buckley/Dropbox/BikeSensor/Surrey Test - 2017_07_07/Tunnel Data/Results/Res_07-2017/output1 parsed/T05.xls",
+		"/C/Users/John Buckley/Dropbox/BikeSensor/Surrey Test - 2017_07_07/Tunnel Data/Results/Res_07-2017/output1 parsed/T04_5.xls",
+		"/C/Users/John Buckley/Dropbox/BikeSensor/Surrey Test - 2017_07_07/Tunnel Data/Results/Res_07-2017/output1 parsed/T01.xls",
+		"/C/Users/John Buckley/Dropbox/BikeSensor/Surrey Test - 2017_07_07/Tunnel Data/Results/Res_07-2017/output1.xls",
+		"/C/GitHub/bikeano/NumpyReview/T02.xls",
+		"/C/GitHub/bikeano/NumpyReview/surrey_csv_view_old.py",
+		"/C/Users/John Buckley/Dropbox/BikeSensor/BA-036, AS BA-032, BUT TOP PLATE AS BA-029/Points.txt",
+		"/C/Users/John Buckley/Dropbox/BikeSensor/BA-034 - AS BA-032, BUT CENTER ELONGATED/BA-034_report.csv",
+		"/C/Users/John Buckley/Dropbox/BikeSensor/BA-032 - AS BA-031, BUT NARROWED/BA-032_report.csv",
+		"/C/Users/John Buckley/Dropbox/BikeSensor/Surrey Test - 2017_07_07/Tunnel Data/Results/Res_07-2017/output1 parsed/T01.csv",
+		"/C/GitHub/bikeano/data_obj_instances.py",
+		"/C/Users/John Buckley/AppData/Local/Temp/Temp1_Combined_tS_2017_0707_152815_T08.zip/master__tS_2017_0707_152815_.json",
+		"/C/GitHub/bikeano/NumpyReview/table_with_paste.py",
+		"/C/Users/John Buckley/AppData/Roaming/Sublime Text 3/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
+		"/C/GitHub/PhotoDrop2/table_with_paste.py",
+		"/C/GitHub/PhotoDrop2/PictureDirTable.py",
+		"/C/GitHub/PhotoDrop2/PhotoDrop.py",
+		"/C/GitHub/imageciser/photo_match_functions.py",
+		"/C/Users/John Buckley/Dropbox/BikeSensor/Surrey Test - 2017_07_07/Tunnel Data/Results/Res_07-2017/surrey_csv_view.py",
+		"/C/Users/John Buckley/Dropbox/BikeSensor/Surrey Test - 2017_07_07/Tunnel Data/Results/Res_07-2017/test.json",
+		"/C/Users/John Buckley/Desktop/LicenseRT.dat",
+		"/C/ProgramData/DassaultSystemes/LicenseServer/Repository_bak/LicenseRT.dat",
+		"/C/ProgramData/DassaultSystemes/LicenseServer/Repository/LicenseDB.dat",
+		"/C/GitHub/bikeano/NumpyReview/master__tS_2017_0708_191357_.json",
+		"/C/GitHub/bikeano/NumpyReview/numpy_review.py",
+		"/C/GitHub/bikeano/main.py",
+		"/C/GitHub/bikeano/screen_module_data_display_menu.py",
+		"/C/Users/John Buckley/Documents/Bike Ano/Data/Copy_from_phone.bat",
+		"/C/GitHub/buildozer_compile/run_compile.py",
+		"/C/GitHub/buildozer_compile/copy_compile_script.py",
+		"/C/GitHub/bikeano/settings_custom.json",
+		"/C/Users/John Buckley/Dropbox/Genius/genius.2017.s01e04.chapter.four.720p.web.dl.hevc.x265.rmteam.ass",
+		"/C/Users/John Buckley/Documents/Arduino/bmp280_Multi/BMP280.cpp_bak",
+		"/C/GitHub/bikeano/bt.py",
+		"/C/Users/John Buckley/Documents/Arduino/bmp280_Multi/BMP280.cpp",
+		"/C/GitHub/bikeano/NumpyReview/main_ui_class.py",
+		"/C/GitHub/bikeano/NumpyReview/tidy_combo_box.py",
+		"/C/Users/John Buckley/AppData/Roaming/Sublime Text 3/Packages/SideBarEnhancements/Side Bar.sublime-settings",
+		"/C/GitHub/bikeano/active_excel.py",
+		"/C/Users/John Buckley/AppData/Roaming/Sublime Text 3/Packages/User/Side Bar.sublime-settings",
+		"/C/GitHub/bikeano/screen_module_bt.py",
+		"/C/GitHub/bikeano/NumpyReview/master__tS_2017_0618_093821_.json",
+		"/C/GitHub/bikeano/gen_plot.py",
+		"/C/GitHub/bikeano/screen_module_speed_display.py",
+		"/C/GitHub/bikeano/ant_power.py",
+		"/C/Anaconda3/envs/py27/Scripts/activate",
+		"/C/GitHub/bikeano/sensor_simulate.py",
+		"/C/GitHub/bikeano/ant_spdcad.py",
+		"/C/GitHub/bikeano/screen_module_logged_channels.py",
+		"/C/Users/John Buckley/AppData/Local/Temp/Temp1_Combined_tS_2017_0515_195756_John.zip/master__tS_2017_0515_195756_.json",
+		"/C/GitHub/bikeano/gps_handler.py",
+		"/C/GitHub/bikeano/README.md",
+		"/C/GitHub/bikeano/buildozer.spec",
+		"/C/GitHub/bikeano/DataReview/main_data_review.py",
+		"/C/GitHub/bikeano/screen_module_ant_raw_sensor.py",
+		"/C/Users/John Buckley/Documents/Arduino/bmp280_BG_170407/BMP280.cpp",
+		"/C/Users/John Buckley/Documents/Arduino/bmp280_BG_170407/bmp280_BG_070407/BMP280.cpp",
+		"/C/GitHub/bikeano/data_review.py",
+		"/C/GitHub/bikeano/screen_module_pressure_channels.py",
+		"/C/GitHub/bikeano/NumpyReview/photo_match_functions.py",
+		"/C/GitHub/bikeano/wakelock.py",
+		"/C/Users/John Buckley/AppData/Roaming/Sublime Text 3/Packages/User/multi_indent.py",
+		"/C/Users/John Buckley/AppData/Roaming/Sublime Text 3/Packages/User/example.py",
+		"/C/Users/John Buckley/AppData/Roaming/Sublime Text 3/Packages/User/Base File.sublime-settings",
+		"/C/Users/John Buckley/AppData/Roaming/Sublime Text 3/Installed Packages/Indent To Parenthesis.sublime-package",
+		"/C/Users/John Buckley/AppData/Roaming/Sublime Text 3/Packages/Alignment/Default (Windows).sublime-keymap",
+		"/C/Users/John Buckley/AppData/Roaming/Sublime Text 3/Packages/Alignment/Base File.sublime-settings",
+		"/C/GitHub/bikeano/bld_lines.spec",
+		"/C/Users/John Buckley/Downloads/Audit exemption.docx",
+		"/C/Users/John Buckley/Downloads/pdfCopy-LTJ1-6561-42631-17100-03-LTJ.PDF",
+		"/C/Users/John Buckley/Downloads/J013-Abbreviated accounts 16.3-ABB-MASTER-20170426(1).pdf",
+		"/C/Users/John Buckley/Downloads/10612-JP Buckley Ltd.doc",
+		"/C/Users/John Buckley/Downloads/pdfCopy-LTJ1-2037-14263-11799-41-LTJ.PDF",
+		"/C/GitHub/bikeano/NumpyReview/README.md",
+		"/C/GitHub/bikeano/NumpyReview/.gitignore",
+		"/C/GitHub/imageciser/photo_match.py",
+		"/C/GitHub/bikeano/run_compile.bat",
+		"/C/GitHub/bikeano/NumpyReview/set_parent_path.py",
+		"/C/GitHub/bikeano/DataReview/screen_module_home_data_review.py",
+		"/C/GitHub/bikeano/DataReview/consoler.py",
+		"/C/GitHub/bikeano/DataReview/screen_module_ftp_list.py",
+		"/C/GitHub/Magnetometer/kustom_widgets_non_qt.py",
+		"/C/GitHub/misc/kustom_widgets.py",
+		"/C/Users/John Buckley/AppData/Local/Microsoft/Windows/Themes/AltEveThemeV2.1.theme",
+		"/C/GitHub/bikeano/bld_lines_add.spec",
+		"/C/GitHub/bikeano/buildozer_extra.spec",
+		"/C/GitHub/kivy_service_osc-master/buildozer.spec",
+		"/C/GitHub/kivy_service_osc-master/script_params.json",
+		"/C/GitHub/kivy_service_osc-master/buildozer_tools.py",
+		"/C/GitHub/kivy_service_osc-master/run_compile.py",
+		"/C/GitHub/kivy_service_osc-master/bld_lines.spec",
+		"/C/GitHub/kivy_service_osc-master/bld_lines_new.spec",
+		"/C/GitHub/kivy_service_osc-master/buildozer_extra.spec",
+		"/C/GitHub/bikeano/screen_module_ant.py",
+		"/C/GitHub/bikeano/screen_module_home.py"
+	],
+	"find":
+	{
+		"height": 101.0
+	},
+	"find_in_files":
+	{
+		"height": 142.0,
+		"where_history":
+		[
+			"<bikeano>",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"readPROM",
+			"print",
+			"delay",
+			"getOversampling",
+			"ct",
+			"Get_Data",
+			"temp",
+			"ct",
+			"MS5611_Address",
+			"TEMP2",
+			" ",
+			"readRawTemperature",
+			"NO_REQUEST",
+			"Wire.write",
+			"requestPressTime",
+			"requestTempTime",
+			"readRawPressure",
+			"readRawPressure()",
+			"MS5611_ADDRESS",
+			"OSR",
+			"ct",
+			"ARDUINO",
+			"MS5611_ADDRESS",
+			"MS5611_A",
+			"alpha2num",
+			"sort",
+			"get_obj_methods",
+			"create_averaged_array",
+			"%/%",
+			"print",
+			"float",
+			"paste_header_data",
+			"put_header_data",
+			"put_data",
+			"=/=",
+			"gen_plot",
+			"31",
+			"add_to_log_dict",
+			"add_to_eqn_dict",
+			"dp_array_time_values",
+			"self.setpoint_list",
+			"create_dp_sensor_filtered_obj",
+			"live_update",
+			"set_atm",
+			"get_air_density_dry",
+			"get_dry_pressure",
+			"=/=",
+			"=\\=",
+			"dtype",
+			"remove",
+			"image_paste",
+			"getCopyin",
+			"deleteDataFile",
+			"load_box",
+			"remove_npy_files",
+			"get_obj_methods",
+			"get_identifiers",
+			"json",
+			")\n",
+			"~",
+			"*t",
+			"8",
+			"print",
+			"time_gap",
+			"calc_time_gap",
+			"interp_std_data",
+			"mask",
+			"create_avg_time_objects",
+			"baro_sensor_calibrated",
+			"GenericDataObj",
+			"avail",
+			"create_averaged_array",
+			"'",
+			"combobox_sort",
+			"define_all_ui_objs",
+			"init_file_pic_window",
+			"send_cmd_button",
+			"offset_elevation",
+			"set_temp_c_hundreths",
+			"self.temperature",
+			"baro_chan_dict",
+			"dp_data_filter",
+			"bt_data_filter",
+			"Logger",
+			"self.bt_sensor_names",
+			"self.baro_channel_order",
+			"self.bt_sensor_names",
+			"create_aver",
+			"self.sys_ts_scale = 1000",
+			".keys",
+			".keys()",
+			"vrs",
+			"TimeObj",
+			"Clock",
+			"Logger",
+			"            Logger.info('Equations:' + ' ValueError - ' + str(e))",
+			"new_obj",
+			"table_parameters",
+			"self.tp_chans",
+			"stamp_rwt_est",
+			"power_time_stamp_rwt_est",
+			"power_power_time_stamp_rwt_est",
+			"stamp_prev_sys",
+			"_time_stamp_sys",
+			"'time_stamp_masked'",
+			"add_average_obj",
+			"filter_dp_pressure_data",
+			"add_to_eqn_obj_dict",
+			"add_to_log_dict",
+			"add_to_eqn_obj_dict",
+			"  print",
+			"print",
+			"time_current",
+			"print",
+			"ld_cnl",
+			"self.name_list",
+			"gps",
+			"prev_sys",
+			"channel_ref_dict",
+			"add_to_eqn_obj_dict",
+			"eqn_obj_dict",
+			"set_base_obj_value",
+			"self",
+			"self.bt_data.channel_dict",
+			"self.bt_data.time_steps",
+			"bt_data",
+			"get_interp_range",
+			"set_base_obj_value"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			",",
+			"REQUEST_NONE",
+			"requestTime",
+			"MS5611_Address",
+			"\t",
+			"self.setpoint_times",
+			"\t",
+			"\\t",
+			"",
+			"vors",
+			"dp_sensor_filtered",
+			"stamp_sys",
+			"create_averaged_array",
+			"equations.add_average_obj",
+			"add_to_eqn_dict",
+			"self.name_list",
+			"dict_name",
+			"bt_channel_dict",
+			"_time",
+			"log_eqn_obj_dict",
+			"eqn_obj_dict",
+			"prefix",
+			"create_avg_time_objects",
+			"row_num_top_sel_or_last",
+			" Channel",
+			"cell_double_click",
+			"acquire",
+			"self.table_attr",
+			"self.ta",
+			"self.row_list",
+			"self.data_dict",
+			"'",
+			"",
+			"self.data_objects",
+			"setSectionsMovable",
+			"data_list",
+			"QtWidgets",
+			"(AttributeError, ValueError)",
+			"(AttributeError, ValueError) as e",
+			"",
+			"ant_spdcad",
+			"trace",
+			"debug",
+			"self.bState",
+			"self.data_obj_dict",
+			"self.channel_dict",
+			"info",
+			"",
+			"channel",
+			"Logger.trace('Bluetooth:' + ",
+			"Logger.debug('Bluetooth:' + ",
+			"Logger.info('Data Log: ' + ",
+			"Logger.debug('Data Log: ' + ",
+			"get_code_dict",
+			"get_codes_dict",
+			"self.display_label_structure",
+			"value + '_'",
+			"Key_obj",
+			"self.data_file_periodic",
+			"rotspd",
+			"rot_acceleration",
+			"rotacc",
+			"rotvel",
+			"value",
+			"button_logging",
+			"button_logging_master",
+			"buffalo",
+			"self.lines_add",
+			"self.lines",
+			"self.connected",
+			"counter",
+			"log_handler",
+			"temp_file_list",
+			"get_spd_code",
+			"self.dprint",
+			"dprint",
+			"'",
+			"','",
+			"lon2_rads",
+			"lon",
+			"lat2_rads",
+			"lat1_rads",
+			"m",
+			"math.",
+			"set_or_def(",
+			"",
+			"self.dm.clock",
+			"",
+			"cad",
+			"parent.root",
+			"if platform._get_platform() == 'android':",
+			"return_function",
+			"cad",
+			"cad_",
+			"spd_data",
+			"cad",
+			"full_values",
+			"result_labels",
+			"bt_select",
+			"RS",
+			"BSb",
+			"BF",
+			"AS",
+			"BSboxLayout",
+			"SMBoxLayout",
+			"BS",
+			"SML",
+			"SMB",
+			"BSB",
+			"Button",
+			"Home",
+			"AntScreen",
+			"Raw Sensors Screen",
+			"bt_select",
+			"RawSensors Screen",
+			"DataObj",
+			"pressure",
+			"Pressure",
+			"self.sensor",
+			"return_to_base_screen_bt",
+			"select_ant",
+			"select_bt",
+			"self.root.setting_widget",
+			"button_populate",
+			"button_select",
+			"SelectOptions",
+			"root",
+			"self.ta"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "MS5611_kj/MS5611_kj.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2923,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1074,
+								1095
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 660.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "/C/Users/John Buckley/Documents/Arduino/baro_Multi/bmp280.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1327,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								790,
+								790
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 66.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/John Buckley/Documents/Arduino/baro_Multi/BMP280.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5263,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								76,
+								104
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "MS5611_kj/MS5611_kj.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7619,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2099,
+								2107
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1304.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			],
+			[
+				2,
+				0,
+				3,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.33,
+			0.66,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "baro_press.sublime-project",
+	"replace":
+	{
+		"height": 165.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 750.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\GitHub\\bikeano\\bikeano.sublime-project"
+			]
+		],
+		"width": 570.0
+	},
+	"select_symbol":
+	{
+		"height": 354.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 374.0
+	},
+	"selected_group": 2,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 325.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+		"max_columns": 2
+	}
+}
