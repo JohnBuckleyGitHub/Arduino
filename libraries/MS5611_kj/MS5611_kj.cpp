@@ -25,12 +25,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <MS5611_kj.h>
 
+bool msDebug = false;
+
 MS5611::MS5611(byte address)
 {
     MS5611_Address = address;
 }
 
-bool MS5611::begin(ms5611_osr_t pressOsr, ms5611_osr_t tempOsr)
+void MS5611::begin(ms5611_osr_t pressOsr, ms5611_osr_t tempOsr, int id_number)
+{
+    while (!initProcedure(pressOsr, tempOsr))
+    {
+        Serial.print("Could not find a valid MS5611 sensor at location ");
+        Serial.print(id_number);
+        Serial.print(", address ");
+        Serial.print(MS5611_Address);
+        Serial.println(", check wiring!");
+        delay(500);
+    }
+}
+
+bool MS5611::initProcedure(ms5611_osr_t pressOsr, ms5611_osr_t tempOsr)
 {
     Wire.begin();
     reset();
@@ -96,31 +111,44 @@ void MS5611::readPROM(void)
 
 MS5611Data MS5611::InitDataStruct(void)
 {
-struct MS5611Data myData;
-GetData(myData, false, true);
-return myData;
+GetData(false, true);
+return lastData;
 }
 
 
-void MS5611::GetData(MS5611Data& myData, bool reuseTemp, bool requestPress)
+void MS5611::GetData(bool reuseTemp, bool requestPress)
 {
-  myData.Raw_P = readRawPressure();
+  lastData.Raw_P = readRawPressure();
   if (reuseTemp != true)
   {
-    myData.Raw_T = readRawTemperature();
-    myData.Temp = convertTemperature(true, myData.Raw_T);
+    lastData.Raw_T = readRawTemperature();
+    lastData.Temp = convertTemperature(true, lastData.Raw_T);
     }
-  myData.Press = convertPressure(true, myData.Raw_P, myData.Raw_T);
-  myData.Pcount++;
+  lastData.Press = convertPressure(true, lastData.Raw_P, lastData.Raw_T);
+  lastData.Pcount++;
   if (requestPress == true) {
     requestRawPressure();}
   else {
     requestRawTemperature();}
 }
 
-void MS5611::UpdateTempData(MS5611Data& myData, bool requestPress)
+void MS5611::PrintData(int location)
 {
-    myData.Raw_T = readRawTemperature();
+    Serial.print("Location, Address, Pressure, & Temp = (");
+    Serial.print(location);
+    Serial.print(", ");
+    Serial.print(MS5611_Address);
+    Serial.print(", ");
+    Serial.print(lastData.Press);
+    Serial.print(", ");
+    Serial.print(lastData.Temp);
+    Serial.print(")");
+}
+
+void MS5611::UpdateTempData(bool requestPress)
+{
+    lastData.Raw_T = readRawTemperature();
+    lastData.Temp = convertTemperature(true, lastData.Raw_T);
     if (requestPress == true) {
         requestRawPressure();}
     else {
@@ -139,13 +167,17 @@ void MS5611::requestRawTemperature(void)
 uint32_t MS5611::readRawTemperature(void)
 {
     if (requestState != REQUEST_TEMPERATURE) {
-        requestRawPressure();
-        Serial.println("Temperature auto-request");
+        requestRawTemperature();
+        if (msDebug == true) {
+            Serial.println("Temperature auto-request");
+        }
     }
     uint32_t duration = micros() - requestTime;
-    Serial.print("temp time diff = ");
-    Serial.println(micros() - requestTime);
     if (duration < t_ct){
+        if (msDebug == true) {
+            Serial.print("Time delay on Temp = ");
+            Serial.println(t_ct - duration);
+        }
         delayMicroseconds(t_ct - duration);
     }
 
@@ -165,14 +197,16 @@ uint32_t MS5611::readRawPressure(void)
 {
     if (requestState != REQUEST_PRESSURE) {
         requestRawPressure();
-        Serial.println("Pressure auto-request");
+        if (msDebug == true) {
+            Serial.println("Pressure auto-request");
+        }
     }
-    Serial.print("time diff = ");
-    Serial.println(micros() - requestTime);
     uint32_t duration = micros() - requestTime;
     if (duration < p_ct){
-        Serial.print("Pressure delay = ");
-        Serial.println(duration);
+        if (msDebug == true) {
+            Serial.print("Time delay on Pressure = ");
+            Serial.println(p_ct - duration);
+        }
         delayMicroseconds(p_ct - duration);
     }
     return readRegister24(MS5611_CMD_ADC_READ);
@@ -289,9 +323,7 @@ uint32_t MS5611::readRegister24(uint8_t reg)
     uint32_t value;
     Wire.beginTransmission(MS5611_Address);
         Wire.write(reg);
-        requestState = REQUEST_NONE;
     Wire.endTransmission();
-
     Wire.beginTransmission(MS5611_Address);
     uint8_t qty = 3;
     Wire.requestFrom(MS5611_Address, qty);

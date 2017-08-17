@@ -59,14 +59,13 @@ class MS5611
 {
     public:
     MS5611(byte Address);
-    // bool begin(ms5611_osr_t osr = MS5611_ULTRA_HIGH_RES);
     byte MS5611_Address;
-    // bool fastCycle;  // if true, conversion request must be made manually
     MS5611Data InitDataStruct(void);
-    // MS5611Data myData;
-    void GetData(MS5611Data& myData, bool reuseTemp, bool requestPress);
-    void UpdateTempData(MS5611Data& myData, bool requestPress);
-    bool begin(ms5611_osr_t pressOsr, ms5611_osr_t tempOsr);
+    void begin(ms5611_osr_t pressOsr, ms5611_osr_t tempOsr, int id_number);
+    //void GetData(MS5611Data& myData, bool reuseTemp, bool requestPress);
+    void GetData(bool reuseTemp, bool requestPress);
+    void PrintData(int location);
+    void UpdateTempData(bool requestPress);
     void requestRawTemperature(void);
     void requestRawPressure(void);
 	uint32_t readRawTemperature(void);
@@ -79,9 +78,11 @@ class MS5611
 	double getSeaLevel(double pressure, double altitude);
 	void setOversampling(ms5611_osr_t osr, bool isPressure);
 	ms5611_osr_t getOversampling(void);
+    struct MS5611Data lastData;
 
     private:
 
+    bool initProcedure(ms5611_osr_t pressOsr, ms5611_osr_t tempOsr);
 	uint16_t fc[6];
     uint16_t ct;
     uint16_t p_ct;
@@ -98,6 +99,7 @@ class MS5611
 	uint32_t readRegister24(uint8_t reg);
     uint32_t requestTime;
     uint8_t requestState;
+    bool debug;
 
 };
 

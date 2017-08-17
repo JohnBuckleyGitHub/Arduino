@@ -1,3 +1,8 @@
+/* 
+For reference BT transmission on 70byte packet is 20ms
+Wire readregister is 1.5ms per address
+*/
+
 
 #include <math.h>
 //#include <LiquidCrystal.h>
@@ -10,21 +15,17 @@
 
 #define ONE_WIRE_BUS 6
 
-
+bool debug = false;
 //LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 SoftwareSerial BT(8,9);   //Use pins 8 and 9 (Rx/Tx)
 
 OneWire oneWire(ONE_WIRE_BUS); 
 FastCRC16 CRC16;
 
-int flStream;
-
 #define TCAADDR 0x70
 
-unsigned long BTDelay=300;  //Number of milliseconds between BT sample sending.
-unsigned long LCDDelay = 100; //Number of milliseconds between LCD refresh    
+unsigned long BTDelay=1;  //Number of milliseconds between BT sample sending.
 unsigned long BTTime=0;
-unsigned long LCDTime=0;
 unsigned long lTime;   //Time in milloseconds for sampling offsets;
 unsigned long lStart; //Time in milloseconds at start of logging;
 const unsigned int NBytes = 70; //Number of bytes in packet
@@ -53,20 +54,18 @@ const int ms_sensorCount=(sizeof(ms_baro_array)/sizeof(*ms_baro_array));
 MS5611Data ms_Data[ms_sensorCount];
 BMP280Data BMP_Data[bmp_sensorCount];
 unsigned long last = 0;
-int phases = 3;
+const int phases = 4;
 int phase = 0;
+double ms_pressSum[ms_sensorCount];
+
 
 void setup() {
-  Serial.println("Begin setup");
   Serial.begin(115200);
   BT.begin(38400);  //Setup bluetooth and timing
   lStart=millis();
   BTTime=micros();
   init_bmp();
   init_ms();
-//  pinMode(10, OUTPUT);  //LED to say when we are logging.
-  flStream=false;
-//  digitalWrite(10,LOW);
 }
 
 void loop() {
@@ -74,10 +73,12 @@ void loop() {
     {
     BTTime=micros();
     PressureDataToStream();
-    WriteDataToBT();
+    //WriteDataToBT();
     phase++;
     if (phase >= phases){
-      phase = 0;
+        createBtPacket();
+        writeDataToBT();
+        phase = 0;
     }
   }
   }
@@ -95,75 +96,99 @@ void init_bmp() {
 void init_ms() {
   for(int i=0; i < ms_sensorCount; i++)
     {
-    tcaselect(ms_tloc[i]);
-    while(!ms_baro_array[i].begin(MS5611_ULTRA_HIGH_RES, MS5611_LOW_POWER))
-    {
-    Serial.print(ms_tloc[i]);
-    Serial.println("Could not find a valid MS5611 sensor at 0x76, check wiring!");
-    delay(500);
-    }
-    ms_Data[i] = ms_baro_array[i].InitDataStruct(); 
+      ms_pressSum[i] = 0;
+      tcaselect(ms_tloc[i]);
+      ms_baro_array[i].begin(MS5611_ULTRA_HIGH_RES, MS5611_HIGH_RES, i);
+      ms_Data[i] = ms_baro_array[i].InitDataStruct(); 
   }
   // Update MS temps
   for(int i=0; i < ms_sensorCount; i++){
-    tcaselect(ms_tloc[i]);
-    ms_baro_array[i].UpdateTempData(ms_Data[i], true);
+      tcaselect(ms_tloc[i]);
+      ms_baro_array[i].UpdateTempData(true);
     }
 }
 
 void PressureDataToStream()
 {
-  // Get MS data, request temps
-  long ms_data_sum = 0;
+    // Get MS data, request temps
+  //long ms_data_sum = 0;
   for(int i=0; i < ms_sensorCount; i++){
     tcaselect(ms_tloc[i]);
-    Serial.println(i);
-    ms_baro_array[i].GetData(ms_Data[i], true, true);
-    ms_data_sum = ms_data_sum + ms_Data[i].Press;
+    if (phase != 1) { // Temperature will not be requested on first phase
+        ms_baro_array[i].GetData(true, true);
     }
-  long ms_avg = ms_data_sum / ms_sensorCount;;
- 
-  long bmp_data_sum = 0;
+    else {
+        ms_baro_array[i].GetData(true, false);
+    }
+    ms_Data[i] = ms_baro_array[i].lastData;
+    //ms_data_sum = ms_data_sum + ms_Data[i].Press;
+    ms_pressSum[i] = ms_pressSum[i] + ms_Data[i].Press;
+    }
+  //long ms_avg = ms_data_sum / ms_sensorCount;
+  // Update MS temps
+  if (phase == 1) {
+      for (int i = 0; i < ms_sensorCount; i++) {
+          tcaselect(ms_tloc[i]);
+          ms_baro_array[i].UpdateTempData(true);
+          //ms_baro_array[i].PrintData(i);
+      }
+  }
+  // Update BMP sensros
+  //long bmp_data_sum = 0;
   for(int i=0; i < bmp_sensorCount; i++)
   {
     if (phase == 0){
       tcaselect(bmp_tloc[i]);
       BMP_Data[i] = bmp_baro_array[i].Get_Data();}
-    bmp_data_sum = bmp_data_sum + BMP_Data[i].Press;
+    //bmp_data_sum = bmp_data_sum + BMP_Data[i].Press;
   }
-  long bmp_avg = bmp_data_sum / (bmp_sensorCount * 16);
+  //long bmp_avg = bmp_data_sum / (bmp_sensorCount * 16);
+}
 
-  // Update MS temps
-  for(int i=0; i < ms_sensorCount; i++){
-    tcaselect(ms_tloc[i]);
-    ms_baro_array[i].UpdateTempData(ms_Data[i], true);
-  }
-  
-  Serial.println("");
-  if (phase == 0){
-    Serial.print("bmp:");
-    Serial.println(bmp_avg);
+void createBtPacket() {
+    printAverages();
+    int packetLoc = 0;
+    LongToPacketLoc(bStream, packetLoc++, millis() - lStart);
+    for (int i = 0; i < bmp_sensorCount; i++) {
+        LongToPacketLoc(bStream, packetLoc++, BMP_Data[i].Temp);
+        LongToPacketLoc(bStream, packetLoc++, BMP_Data[i].Press);
     }
-  Serial.print("ms:");
-  Serial.println(ms_avg);
-  int packetLoc = 0;
-  LongToPacketLoc(bStream, packetLoc++, millis()-lStart);
-  unsigned long cur = millis()-lStart;
-  last = cur;
-  for(int i=0; i < bmp_sensorCount; i++){
-    LongToPacketLoc(bStream, packetLoc++, BMP_Data[i].Temp);
-    LongToPacketLoc(bStream, packetLoc++, BMP_Data[i].Press);
-  }
-  for(int i=bmp_sensorCount; i < (bmp_sensorCount + ms_sensorCount); i++){
-    LongToPacketLoc(bStream, packetLoc++, ms_Data[i].Temp);
-    LongToPacketLoc(bStream, packetLoc++, ms_Data[i].Press);
-  }
+    for (int j = bmp_sensorCount; j < (bmp_sensorCount + ms_sensorCount); j++) {
+        int i = j - bmp_sensorCount;
+        LongToPacketLoc(bStream, packetLoc++, long(100 * ms_Data[i].Temp));
+        long ms_pressAvgLong = long(16 * ms_pressSum[i] / float(phases));
+        LongToPacketLoc(bStream, packetLoc++, ms_pressAvgLong);
+        ms_pressSum[i] = 0;
+    }
+}
+
+void printAverages() {
+    double bmpTempSum = 0;
+    double bmpPressSum = 0;
+    double msTempSum = 0;
+    double msPressSum = 0;
+    for (int i = 0; i < bmp_sensorCount; i++) {
+        bmpTempSum =  bmpTempSum + BMP_Data[i].Temp;
+        bmpPressSum = bmpPressSum + BMP_Data[i].Press;
+    }
+    for (int i = 0; i < ms_sensorCount; i++) {
+        msTempSum = msTempSum + ms_Data[i].Temp;
+        msPressSum = msPressSum + (ms_pressSum[i] / float(phases));
+    }
+    Serial.print("bmp:");
+    double output = bmpPressSum / (float(bmp_sensorCount)*16);
+    //Serial.println(bmpPressSum);
+    Serial.println(output);
+    Serial.print("ms:");
+    output = msPressSum / float(ms_sensorCount);
+    Serial.println(output);
 }
 
 boolean TimeGovernor(){
-//    Serial.println();
-    Serial.print("Loop time was:  ");
-    Serial.println((micros()-BTTime)/1000);
+    if (debug == true) {
+        Serial.print("Loop time was:  ");
+        Serial.println((micros() - BTTime) / 1000);
+    }
   if ((micros()-BTTime)> (BTDelay * 1000))
   {
     return true;
@@ -177,22 +202,19 @@ boolean TimeGovernor(){
     }
     int milliDelay = DelayTime / 1000;
     int microDelay = DelayTime % 1000;
-    Serial.print("Delay  :");
-    Serial.println(milliDelay);
+    if (debug == true) {
+        Serial.print("Delay  :");
+        Serial.println(milliDelay);
+    }
     delay(milliDelay);
     delayMicroseconds(microDelay);
     return false;
   }
 }
 
-void WriteDataToBT()
+void writeDataToBT()
 {
     //Checksum using fastcrc 16 bit ccitt scheme.
-    byte bTest[4];
-    for (byte i=0;i<4;i++)
-    {
-      bTest[i]=i;
-    }
     uint16_t checksum=CRC16.ccitt(bStream,NBytes-2);
     byte b[2];
     b[0]=(checksum>>8) & 0xFF;
