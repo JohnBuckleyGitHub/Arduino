@@ -17,7 +17,7 @@ Wire readregister is 1.5ms per address
 
 bool debug = false;
 //LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
-SoftwareSerial BT(8,9);   //Use pins 8 and 9 (Rx/Tx)
+SoftwareSerial BT(8, 9);   //Use pins 8 and 9 (Rx/Tx)
 
 OneWire oneWire(ONE_WIRE_BUS); 
 FastCRC16 CRC16;
@@ -28,12 +28,9 @@ unsigned long BTDelay=1;  //Number of milliseconds between BT sample sending.
 unsigned long BTTime=0;
 unsigned long lTime;   //Time in milloseconds for sampling offsets;
 unsigned long lStart; //Time in milloseconds at start of logging;
-const unsigned int NBytes = 70; //Number of bytes in packet
 unsigned long NPackets=0;
 unsigned long DelayTime=0;
-byte bStream[NBytes];
 float display_pressure;
-
 //Global variables to store values which we then pass to BT and LCD:
 int32_t Press=0;
 int32_t Temp=0;
@@ -47,12 +44,27 @@ byte bCom=0;
 
 BMP280 bmp_baro_array[] = {(0x77),(0x76),(0x77),(0x76)}; //BMP280 object at address 0x76 & 0x77:
 MS5611 ms_baro_array[] = {(0x77),(0x76),(0x77),(0x76)}; //MS5611 object at address 0x76 & 0x77:
+//BMP280 bmp_baro_array[] = { (0x77),(0x76)}; //BMP280 object at address 0x76 & 0x77:
+//MS5611 ms_baro_array[] = { (0x77),(0x76)}; //MS5611 object at address 0x76 & 0x77:
 uint8_t bmp_tloc[] = {0,0,1,1};  // multiplex locations of BMP sensors
 uint8_t ms_tloc[] = {2,2,3,3};  // multiplex locations of MS sensors
-const int bmp_sensorCount=(sizeof(bmp_baro_array)/sizeof(*bmp_baro_array));  // It would be nice if c had a length function
-const int ms_sensorCount=(sizeof(ms_baro_array)/sizeof(*ms_baro_array));
+//const uint8_t bmp_tloc[] = {0,0};  // multiplex locations of BMP sensors
+//const uint8_t ms_tloc[] = {2,2};  // multiplex locations of MS sensors
+const uint8_t bmp_sensorCount=(sizeof(bmp_baro_array)/sizeof(*bmp_baro_array));  // It would be nice if c had a length function
+const uint8_t ms_sensorCount=(sizeof(ms_baro_array)/sizeof(*ms_baro_array));
+//const uint8_t baro_shape[] = {2,3};
+const uint8_t clock_byte_length = 4;
+const uint8_t temp_byte_length = 2;
+const uint8_t press_byte_length = 3;
+const uint8_t checkSumLength = 2;
+const uint8_t packetLength = 1 + bmp_sensorCount * 2 + ms_sensorCount * 2;  // packetLength dos not include CRC
+uint8_t packetShape[packetLength];
+uint8_t packetLocs[packetLength];
+//uint8_t packet_shape[] = {4,2,3,2,3,2,3,2,3};
 MS5611Data ms_Data[ms_sensorCount];
 BMP280Data BMP_Data[bmp_sensorCount];
+const unsigned int NBytes = clock_byte_length + (temp_byte_length + press_byte_length) * (bmp_sensorCount + ms_sensorCount) + checkSumLength; //Number of bytes in packet
+byte bStream[NBytes];
 unsigned long last = 0;
 const int phases = 4;
 int phase = 0;
@@ -60,6 +72,16 @@ double ms_pressSum[ms_sensorCount];
 
 
 void setup() {
+  packetShape[0] = clock_byte_length;
+  packetLocs[0] = 0;
+  for (int i = 1; i < packetLength; i+=2) {
+      packetLocs[i] = packetShape[i-1] + packetLocs[i-1];
+      packetShape[i] = temp_byte_length;
+      packetLocs[i+1] = packetShape[i] + packetLocs[i];
+      packetShape[i+1] = press_byte_length;
+  }
+  Serial.print("NBytes = ");
+  Serial.println(NBytes);
   Serial.begin(115200);
   BT.begin(38400);  //Setup bluetooth and timing
   lStart=millis();
@@ -148,16 +170,20 @@ void PressureDataToStream()
 void createBtPacket() {
     printAverages();
     int packetLoc = 0;
-    LongToPacketLoc(bStream, packetLoc++, millis() - lStart);
+    LongToPacketLoc(bStream, packetLocs[packetLoc++], millis() - lStart);
     for (int i = 0; i < bmp_sensorCount; i++) {
-        LongToPacketLoc(bStream, packetLoc++, BMP_Data[i].Temp);
-        LongToPacketLoc(bStream, packetLoc++, BMP_Data[i].Press);
+        LongToPacketVarLoc(bStream, packetLocs[packetLoc], BMP_Data[i].Temp, packetShape[packetLoc]);
+        packetLoc++;
+        LongToPacketVarLoc(bStream, packetLocs[packetLoc], BMP_Data[i].Press, packetShape[packetLoc]);
+        packetLoc++;
     }
     for (int j = bmp_sensorCount; j < (bmp_sensorCount + ms_sensorCount); j++) {
         int i = j - bmp_sensorCount;
-        LongToPacketLoc(bStream, packetLoc++, long(100 * ms_Data[i].Temp));
+        LongToPacketVarLoc(bStream, packetLocs[packetLoc], long(100 * ms_Data[i].Temp), packetShape[packetLoc]);
+        packetLoc++;
         long ms_pressAvgLong = long(16 * ms_pressSum[i] / float(phases));
-        LongToPacketLoc(bStream, packetLoc++, ms_pressAvgLong);
+        LongToPacketVarLoc(bStream, packetLocs[packetLoc], ms_pressAvgLong, packetShape[packetLoc]);
+        packetLoc++;
         ms_pressSum[i] = 0;
     }
 }
@@ -242,6 +268,16 @@ void UnsignedLongToPacketLoc(byte *bStream, int location, uint16_t value){
   {
     bStream[i + (location * bLength)] = b[i];
   }
+}
+
+void LongToPacketVarLoc(byte *bStream, int location, long value, int sbLength) {
+    const int bLength = 4;
+    byte b[bLength];
+    LongToByteArray(b, value);
+    for (int i = 0; i<sbLength; i++)
+    {
+        bStream[i + location] = b[i];
+    }
 }
 
 void LongToPacketLoc(byte *bStream, int location, long value){
