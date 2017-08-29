@@ -2,6 +2,7 @@
 #define BMP280_H
 
 #include "Arduino.h"
+#include "sensorStruct.h"
 //#define BMP280_Address 0x76 //Address of BMP280 sensor.
 
 struct BMP280Data{
@@ -17,12 +18,13 @@ class BMP280
   public:  
     BMP280 (byte Address);
     byte Get_Address();
-    BMP280Data Get_Data();
+    //BMP280Data Get_Data();
+    sensorData Get_Data();
     float CalcAlt(float dblPress);
     void write(byte reg, byte data);
-    void read(byte reg, int count, byte* data);
-    int32_t bmp280_compensate_T_int32(int32_t adc_T);
-    long bmp280_compensate_P_int32(int32_t adc_P); 
+    void read(byte reg, uint8_t count, byte* data);
+    double bmp280_compensate_T_double(int32_t adc_T);
+    double bmp280_compensate_P_double(int32_t adc_P); 
     void Get_Cal();
     byte* Get_Settings();
     void BMP280::Print_Values();
@@ -41,7 +43,7 @@ class BMP280
     int16_t dig_P7;
     int16_t dig_P8;
     int16_t dig_P9;
-    int pcount;
+    uint32_t pcount;
     const float Pb = 100000.0; //Pressure in Pa at "0 height".
     const float Lb = -0.0065; //Temp lapse rate (K/m)
     const double Tb = 298.0; //Temperature in K at sea level.
