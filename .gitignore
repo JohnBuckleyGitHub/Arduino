@@ -65,7 +65,7 @@ old
 
 # VS C Dross
 *.suo
-*.cpp.o
+*.o
 *.elf
 *.hex
 
