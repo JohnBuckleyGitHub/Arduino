@@ -27,8 +27,7 @@ sensorData BMP280::Get_Data()
   uint32_t adc_T;
   adc_T = ((uint32_t)bData[3] << 12) + ((uint32_t)bData[4] << 4) + ((uint32_t)bData[5] >> 4);
   adc_P = ((uint32_t)bData[0] << 12) + ((uint32_t)bData[1] << 4) + ((uint32_t)bData[2] >> 4);
-  //adc_P = ((uint32_t)bData[0] << 16) + ((uint32_t)bData[1] << 8) + ((uint32_t)bData[2] >> 0);  // Byte shifted << 4
-  myData.Temp = bmp280_compensate_T_double(adc_T);
+   myData.Temp = bmp280_compensate_T_double(adc_T);
   myData.Press = bmp280_compensate_P_double(adc_P);
   myData.Pcount = pcount++;
   myData.Raw_P = adc_P;
@@ -77,21 +76,7 @@ void BMP280::read(byte reg, uint8_t count, byte* data) {
   Wire.endTransmission();
 }
 
-// Returns integer representation of temperature in degC.  2406 means 24.06degC
-//double BMP280::bmp280_compensate_T_int32(int32_t adc_T)
-//{
-//  int32_t var1p, var1, var2p, var2, T;
-//  var1p = (adc_T >> 3) - ((int32_t)dig_T1 << 1);
-//  var1 = var1p * ((int32_t)dig_T2) >> 11;
-//  var2p = ((adc_T >> 4) - ((int32_t)dig_T1));
-//  var2 = ((var2p * var2p) >> 12)* ((int32_t)dig_T3) >> 14;
-//  t_fine = var1 + var2;
-//  //T = (t_fine * 5 + 128) >> 8;
-//  T = (t_fine * 5 + 128);
-//  //double out_T = T / (256 * 10);
-//  double out_T = ((t_fine * 5 + 128) >> 8);
-//  return out_T;
-//}
+
 
 // Returns temperature in DegC, double precision. Output value of “51.23” equals 51.23 DegC.
 double BMP280::bmp280_compensate_T_double(int32_t adc_T)
@@ -105,45 +90,6 @@ double BMP280::bmp280_compensate_T_double(int32_t adc_T)
     return T;
 }
 
-// Returns pressure in Pa as unsigned 32 bit integer. Output value of “96386” equals 96386 Pa = 963.86 hPa
-//double BMP280::bmp280_compensate_P_int32(int32_t adc_P)
-//{
-//  int64_t var1, var2;
-////  unsigned long p;
-//  unsigned long long p;
-//  long pp;
-//  var1 = (((int32_t)t_fine) >> 1) - (int32_t)64000;
-////  var1 = (((int32_t)135655) >> 1) - (int32_t)64000;  // Locks in Temperature at 26.5°C
-//  var2 = (((var1 >> 2) * (var1 >> 2)) >> 11 ) * ((int32_t)dig_P6);
-//  var2 = var2 + ((var1 * ((int32_t)dig_P5)) << 1);
-//  var2 = (var2 >> 2) + (((int32_t)dig_P4) << 16);
-//  var1 = (((dig_P3 * (((var1 >> 2) * (var1 >> 2)) >> 13 )) >> 3) + ((((int32_t)dig_P2) * var1) >> 1)) >> 18;
-//  var1 = ((((32768 + var1)) * ((int32_t)dig_P1)) >> 15);
-//  if (var1 == 0)
-//  {
-//    return 0; // avoid exception caused by division by zero
-//  }
-////  p = (((uint32_t)(((int32_t)1048576) - adc_P) - (var2 >> 12))) * 3125;
-//  p = (uint64_t)(((int64_t)1048576 << 4) - adc_P);
-//  p = (p - (var2 >> 8)) * 3125;
-//// if (p < 0x80000000)
-//  if ((p >> 4) < 0x80000000)
-//  {
-//    p = (p << 1) / ((uint32_t)var1);
-//  }
-//  else
-//  {
-//    p = (p / (uint32_t)var1) * 2;
-//  }
-////  var1 = (((int64_t)dig_P9) * ((int64_t)(((p >> 3) * (p >> 3)) >> 13))) >> 12;
-//  var1 = (((int64_t)dig_P9) * ((int64_t)(((p >> 7) * (p >> 7)) >> 13))) >> 12;
-//  var2 = (int64_t)(p >> 6);
-//  var2 = var2 * (int64_t)dig_P8;
-//  var2 = var2 >> 13;
-//  p = (uint64_t)((int64_t)p + ((var1 + var2 + dig_P7) >> 0));
-//  double out_p = p / 16;
-//  return out_p;
-//}
 
 // Returns pressure in Pa as unsigned 32 bit integer. Output value of “96386” equals 96386 Pa = 963.86 hPa
 double BMP280::bmp280_compensate_P_double(int32_t adc_P)
