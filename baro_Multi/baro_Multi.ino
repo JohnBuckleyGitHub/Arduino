@@ -58,14 +58,14 @@ const int phases = 4;
 int phase = 0;
 double ms_pressSum[ms_sensorCount];
 
-dataPacket BTpacket;
+dataPacket BTpacket(0, 4, 4);
 
 
 
 void setup() {
   Serial.begin(115200);
   Serial.print("NPacketBytes = ");
-  Serial.println(BTpacket.PacketByteCount);
+  Serial.println(BTpacket.NPacketBytes);
   BTpacket.debugPrint();
   BT.begin(115200);  //Setup bluetooth and timing
   lStart=millis();

@@ -10,22 +10,30 @@ const uint8_t clock_byte_length = 4;
 const uint8_t temp_byte_length = 2;
 const uint8_t press_byte_length = 3;
 const uint8_t checkSumLength = 2;
-const uint8_t bmp_sensorCount = 4;
-const uint8_t ms_sensorCount = 4; 
-const uint8_t packetLength = 1 + bmp_sensorCount * 2 + ms_sensorCount * 2;  // packetLength does not include CRC
-uint8_t packetShape[packetLength];
-uint8_t packetLocs[packetLength];
-const unsigned int NPacketBytes = clock_byte_length + (temp_byte_length + press_byte_length) * (bmp_sensorCount + ms_sensorCount) + checkSumLength; //Number of bytes in packet
-byte bStream[NPacketBytes];
+/*const uint8_t bmp_sensorCount = 4;
+const uint8_t ms_sensorCount = 4;*/ 
+// const uint8_t packetLength = 1 + bmp_sensorCount * 2 + ms_sensorCount * 2;  // packetLength does not include CRC
+uint8_t* packetShape = NULL;
+// uint8_t packetShape[packetLength];
+uint8_t* packetLocs = NULL;
+// uint8_t packetLocs[packetLength];
+// const unsigned int NPacketBytes = clock_byte_length + (temp_byte_length + press_byte_length) * (bmp_sensorCount + ms_sensorCount) + checkSumLength; //Number of bytes in packet
+byte* bStream = NULL;
+// byte bStream[NPacketBytes];
+uint8_t packetLength;
 int packetLoc = 0;
 
 
 // NPacketBytes = 46
 // [0, 4, 6, 9, 11, 14, 16, 19, 21, 24, 26, 29, 31, 34, 36, 39, 41, ]
 
-dataPacket::dataPacket()
+dataPacket::dataPacket(int dp_sensor_count, int bmp_sensorCount, int ms_sensorCount)
 {
-    PacketByteCount = NPacketBytes;
+    uint8_t packetLength = 1 + bmp_sensorCount * 2 + ms_sensorCount * 2;  // packetLength does not include CRC
+    packetShape = new uint8_t[packetLength];
+    packetLocs = new uint8_t[packetLength];
+    NPacketBytes = clock_byte_length + (temp_byte_length + press_byte_length) * (bmp_sensorCount + ms_sensorCount) + checkSumLength; //Number of bytes in packet
+    bStream = new byte[NPacketBytes];
     packetShape[0] = clock_byte_length;
     packetLocs[0] = 0;
     for (int i = 1; i < packetLength; i += 2) {

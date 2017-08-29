@@ -9,7 +9,7 @@
 class dataPacket
 {
     public:
-        dataPacket();
+        dataPacket(int dp_sensor_count, int bmp_sensorCount, int ms_sensorCount);
         void resetPacketLoc();
         void setTimeData(uint32_t timeToSet);
         void setBaroData(uint8_t baroCount, sensorData *baroData);
@@ -22,7 +22,13 @@ class dataPacket
         void uint16ToPacketVarLoc(byte *bStream, int location, uint16_t value, int sbLength);
         void int16ToPacketVarLoc(byte *bStream, int location, int16_t value, int sbLength);
         long restructBytes();
-        int PacketByteCount;
+        int NPacketBytes;
+    private:
+        uint8_t* packetShape;
+        uint8_t* packetLocs;
+        byte* bStream;
+        uint8_t packetLength;
+        int packetLoc;
 };
 
 #endif
